@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHP Technical Documentation</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav id="navbar">
+        <header>PHP Documentation</header>
+        <ul>
+            <li><a class="nav-link" href="#Introduction">Introduction</a></li>
+            <li><a class="nav-link" href="#Syntax">Syntax</a></li>
+            <li><a class="nav-link" href="#Hello_World">Hello World</a></li>
+            <li><a class="nav-link" href="#Variables">Variables</a></li>
+            <li><a class="nav-link" href="#Declaring_Variables">Declaring Variables</a></li>
+            <li><a class="nav-link" href="#Variables_Scope">Variables Scope</a></li>
+            <li><a class="nav-link" href="#Data_Types">Data Types</a></li>
+            <li><a class="nav-link" href="#Math">Math</a></li>
+            <li><a class="nav-link" href="#Functions_Declaration">Functions Declaration</a></li>
+            <li><a class="nav-link" href="#Reference">Reference</a></li>
+        </ul>
+    </nav>
+    <main id="main-doc">
+        <section id="Introduction" class="main-section">
+            <header>Introduction</header>
+            <article>
+                <p>PHP code is executed on the server.</p>
+                <p>Before you continue you should have a basic understanding of the following:
+                    <ul>
+                        <li>HTML</li>
+                        <li>CSS</li>
+                        <li>JavaScript</li>
+                    </ul>
+                </p>
+                <p>
+                    PHP, which stands for "PHP: Hypertext Preprocessor," is a widely-used, 
+                    open-source scripting language. It is primarily used for web development, 
+                    and PHP scripts are executed on the server side. As an added benefit, 
+                    PHP is free to download and use, making it an accessible choice for 
+                    developers around the world.
+                </p>
+            </article>
+        </section>
+        <section id="Syntax" class="main-section">
+            <header>Syntax</header>
+            <article>
+                <p>A PHP script is executed on the server, and the plain HTML result is sent back to the browser.</p>
+                <p>A PHP script can be placed anywhere within a document. It begins with &lt;?php and ends with ?&gt;, marking the start and end of the PHP code block.</p>     <!-- &lt; = <   &gt; = > -->
+                <pre><code>
+                    &lt;?php
+                        // PHP code goes here
+                    ?&gt;                    
+                </code></pre>
+                <p>In PHP, keywords (e.g. if, else, while, echo, etc.), classes, functions, and user-defined functions are not case-sensitive.</p>
+            </article>
+        </section>
+        <section id="Hello_World" class="main-section">
+            <header>Hello World</header>
+            <article>
+                <p>Below, we have an example of a simple PHP file, with a PHP script that uses a built-in PHP function "echo" to output the text "Hello World!" on a web page:</p>
+                <pre><code>
+                    &lt;! DOCTYPE html&gt;
+                    &lt;html&gt;
+                    &lt;body&gt;
+                    &lt;h1&gt;My First PHP Page &lt;/h1&gt;
+                        &lt;?php
+                            echo "Hello World"
+                        ?&gt;
+                        &lt;/body&gt;
+                        &lt;/html&gt;
+                </code></pre>
+            </article>
+        </section>
+        <section id="Variables" class="main-section">
+            <header>Variables</header>
+            <article>
+                <p>A variable can have a short name (like $x and $y) or a more descriptive name ($age, $carname, $total_volume).</p>
+                <p>Rules for PHP variables:
+                    <ul>
+                        <li>A variable starts with the $ sign, followed by the name of the variable</li>
+                        <li>A variable name must start with a letter or the underscore character</li>
+                        <li>A variable name cannot start with a number</li>
+                        <li>A variable name can only contain alpha-numeric characters and underscores (A-z, 0-9, and _ )</li>
+                        <li>Variable names are case-sensitive ($age and $AGE are two different variables)</li>
+                    </ul>
+                </p>
+            </article>
+        </section>
+        <section id="Declaring_Variables" class="main-section">
+            <header>Declaring Variables</header>
+            <article>
+                <p>In PHP, a variable starts with the $ sign, followed by the name of the variable:</p>
+                <span>Example Code:</span><br>
+                <code>
+                    $x = 5;<br>
+                    $y = "John";
+                </code>
+            </article>
+        </section>
+        <section id="Variables_Scope" class="main-section">
+            <header>Variables Scope</header>
+            <article>
+                <p>In PHP, variables can be declared anywhere in the script. <br>
+                    The scope of a variable is the part of the script where the variable can be referenced/used.
+                    <p>PHP has three different variable scopes:
+                        <ul>
+                            <li>local</li>
+                            <li>global</li>
+                            <li>static</li>
+                        </ul>
+                    </p>
+                    <p>
+                        <h4>Local and Global Scope</h4>
+                    </p>
+                    <p>A variable declared <strong>outside</strong> a function has a GLOBAL SCOPE and can only be accessed outside a function:</p>
+                    <pre><code>
+                        $x = 5; // global scope 
+                          function myTest() {   
+                            // using x inside this function will generate an error 
+                            echo "&lt;p&gt;Variable x inside function is: $x&lt;/p&gt;"; 
+                          } 
+                          
+                          myTest(); 
+                          echo "&lt;p&gt;Variable x outside function is: $x&lt;/p&gt;";
+                    </code></pre>
+                    <hr>
+                    <p>A variable declared <strong>within</strong> a function has a LOCAL SCOPE and can only be accessed within that function:</p>
+                    <pre><code>
+                        function myTest() { 
+                            $x = 5; // local scope 
+                            echo "&lt;p&gt;Variable x inside function is: $x&lt;/p&gt;";
+                        }
+                            myTest();
+
+                            // using x outside the function will generate an error
+                            echo "&lt;p&gt;Variable x outside function is: $x&lt;/p&gt;"; 
+
+                    </code></pre>
+
+                    <p><h4>Static</h4></p>
+                    <p>Normally, when a function is completed/executed, all of its variables are deleted. 
+                        However, sometimes we want a local variable NOT to be deleted. We need it for a further job.<br>
+                        To do this, use the <strong>static</strong> keyword when you first declare the variable:
+                    </p>
+                        <pre><code>
+                            function myTest() {
+                              static $x = 0;
+                              echo $x;
+                              $x++;
+                            }
+
+                            myTest();
+                            myTest();
+                            myTest();
+
+                        </code></pre>
+                </p>
+            </article>
+        </section>
+        <section id="Data_Types" class="main-section">
+            <header>Data Types</header>
+            <article>
+                <p>Variables can store data of different types, and different data types can do different things.</p>
+                <p>PHP supports the following data types:
+                    <ul>
+                        <li>String</li>
+                        <li>Integer</li>
+                        <li>Float (floating point numbers - also called double)</li>
+                        <li>Boolean</li>
+                        <li>Array</li>
+                        <li>Object</li>
+                        <li>NULL</li>
+                        <li>Resource</li>
+                    </ul>
+                </p>
+            </article>
+        </section>
+        <section id="Math" class="main-section">
+            <header>Math</header>
+            <article>
+                <p>PHP has a set of math functions that allows you to perform mathematical tasks on numbers.</p>
+            </article>
+        </section>
+        <section id="Functions_Declaration" class="main-section">
+            <header>Functions Declaration</header>
+            <article>
+                <p>PHP has over 1000 built-in functions that can be called directly, from within a script, to perform a specific task.</p>
+                <p>Besides the built-in PHP functions, it is possible to create your own functions.
+                    <ul>
+                        <li>A function is a block of statements that can be used repeatedly in a program.</li>
+                        <li>A function will not execute automatically when a page loads.</li>
+                        <li>A function will be executed by a call to the function.</li>
+                    </ul>
+                </p>
+            </article>
+        </section>
+        <section id="Reference" class="main-section">
+            <header>Reference</header>
+            <article>
+                <p>This section contains a complete PHP reference documentation.</p>
+                <p>Visit
+                    <ul>
+                        <li><a href="https://www.w3schools.com/php/" target="_blank">Learn PHP</a></li>
+                    </ul>
+                </p>
+            </article>
+        </section>
+    </main>
+</body>
+</html>
